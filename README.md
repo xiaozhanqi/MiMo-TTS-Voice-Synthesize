@@ -1,0 +1,86 @@
+# MiMo TTS 语音合成器
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=Streamlit&logoColor=white)](https://streamlit.io/)
+
+> 一款基于小米 MiMo-V2.5-TTS 的桌面端文本转语音应用，支持音色设计、声音克隆和多种说话风格。
+
+## ✨ 功能特性
+
+- 🎙️ **预置音色** - 开箱即用，内置多种精品音色
+- 🎨 **音色设计** - 通过文本描述定制专属音色
+- 🎭 **声音克隆** - 基于音频样本复刻任意音色
+- 🎵 **风格控制** - 支持语速、情绪、方言等多种风格
+- 🎤 **唱歌模式** - 支持将歌词合成歌曲
+- 💻 **桌面应用** - 基于 WebView2 的独立桌面程序
+- 📦 **便携版本** - 单文件可执行程序，无需安装
+
+## 🚀 快速开始
+
+### 方式一：使用打包好的程序（推荐）
+
+1. 下载最新版本的 `MiMoTTS语音合成器.exe`
+2. 双击运行即可
+
+### 方式二：从源码运行
+
+```bash
+# 克隆仓库
+git clone https://github.com/xiaozhanqi/MiMo-TTS-Voice-Synthesize.git
+cd MiMo-TTS-Voice-Synthesize
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 运行网页版
+streamlit run src/mimo_tts_app.py
+
+# 或运行桌面版
+python src/desktop_app.py
+```
+
+## 📦 打包应用
+
+```bash
+python src/build_desktop_app.py
+```
+
+打包后的文件位于 `dist/MiMoTTS语音合成器.exe`
+
+## 🔧 系统要求
+
+- Windows 10/11
+- .NET Framework 4.7.2 或更高版本
+- WebView2 Runtime（首次运行会自动安装）
+
+## 📝 使用说明
+
+1. 获取 MiMo API Key
+2. 在应用中输入 API Key
+3. 选择模型和音色
+4. 输入文本，点击合成
+5. 下载生成的音频文件
+
+## 🛠️ 技术栈
+
+- [Python](https://www.python.org/) - 后端逻辑
+- [Streamlit](https://streamlit.io/) - Web 界面
+- [PyWebView](https://pywebview.flowrl.com/) - 桌面窗口
+- [PyInstaller](https://pyinstaller.org/) - 应用打包
+
+## 📄 许可证
+
+本项目采用 [MIT License](LICENSE) 开源许可证。
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📧 联系
+
+如有问题，请通过 GitHub Issues 联系。
+
+---
+
+<p align="center">Made with ❤️ by xiaozhanqi</p>
