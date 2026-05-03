@@ -1,0 +1,30 @@
+# Build directories
+build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# WebView2 Runtime (too large, will be downloaded on first run)
+src/webview2_runtime/
+src/redist/
+
+# OS
+.DS_Store
+Thumbs.db
