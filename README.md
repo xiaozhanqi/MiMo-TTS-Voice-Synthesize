@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=Streamlit&logoColor=white)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=Streamlit\&logoColor=white)](https://streamlit.io/)
 
 > 一款基于小米 MiMo-V2.5-TTS 的桌面端文本转语音应用，支持音色设计、声音克隆和多种说话风格。
 
@@ -84,22 +84,17 @@ python src/build_desktop_app.py
 ## 免责声明
 
 1. **本工具为第三方开源客户端**，与小米公司无任何关联，未经小米官方授权或认可。
-
 2. **API服务由小米官方提供**，用户须自行注册小米账号并申请API密钥（Access Key）。
    本工具仅提供API调用的技术封装，不预装、不提供、不共享任何API密钥。
-
 3. **预填的API地址**来源于小米官方公开文档，仅供技术对接参考。
    如小米官方调整接口地址，请以官方最新文档为准。
-
 4. **内容生成责任**：TTS音频内容由小米服务器根据用户输入文本生成，
    本工具不存储、不处理、不传播任何音频数据或文本内容。
-
 5. **用户须自行遵守**《小米开发者协议》《小米AI服务条款》及相关法律法规，
    不得将本工具用于生成违法、侵权、虚假或欺诈性内容。
    因用户违反上述规定产生的法律责任，由用户自行承担。
+6. 本工具基于 MIT 许可证开源，按"现状"（AS IS）提供，作者不提供任何明示或默示的担保，包括但不限于适销性、特定用途适用性及非侵权性的默示担保。
 
-6. 本工具基于 MIT 许可证开源，按"原样"提供，作者不承担任何明示或默示的担保责任。
-
----
+***
 
 <p align="center">Made with ❤️ by xiaozhanqi</p>
