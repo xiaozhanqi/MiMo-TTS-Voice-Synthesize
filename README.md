@@ -97,4 +97,4 @@ python src/build_desktop_app.py
 
 ***
 
-<p align="center">Made with ❤️ by xiaozhanqi</p>
+<p align="center">Made with ❤️ by lixi</p>
