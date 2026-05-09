@@ -148,6 +148,7 @@ hidden_imports = [
     # 系统相关
     "tkinter",
     "tkinter.messagebox",
+    "tkinter.filedialog",
     "winreg",
     
     # 网络相关
