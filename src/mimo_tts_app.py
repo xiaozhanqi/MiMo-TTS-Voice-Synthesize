@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 import base64
 import requests
 from openai import OpenAI
@@ -172,13 +173,13 @@ with st.sidebar:
             <div style="font-size:0.65rem;color:#aaa;">按量计费</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button(
+        st.button(
             "✓ 已选择" if plan_active else "切换到此",
             key="btn_plan", use_container_width=True,
             type="primary" if plan_active else "secondary",
+            disabled=plan_active,
             on_click=set_mode, args=("mimoplan",),
-        ):
-            pass
+        )
 
     with mc2:
         key_active = current == "apikey"
@@ -192,13 +193,13 @@ with st.sidebar:
             <div style="font-size:0.65rem;color:#aaa;">自有密钥</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button(
+        st.button(
             "✓ 已选择" if key_active else "切换到此",
             key="btn_key", use_container_width=True,
             type="primary" if key_active else "secondary",
+            disabled=key_active,
             on_click=set_mode, args=("apikey",),
-        ):
-            pass
+        )
 
     st.markdown("---")
 
@@ -539,16 +540,58 @@ if st.session_state.get("generated") and st.session_state.audio_data:
     col_player, col_meta = st.columns([3, 1])
     with col_player:
         fmt = st.session_state.filename.split(".")[-1]
-        st.audio(st.session_state.audio_data, format=f"audio/{fmt}")
+        # 修复 WAV 格式的 MIME 类型
+        mime_type = f"audio/{fmt}"
+        if fmt.lower() == "wav":
+            mime_type = "audio/wav"
+        st.audio(st.session_state.audio_data, format=mime_type)
     with col_meta:
         size_kb = len(st.session_state.audio_data) / 1024
         st.markdown(f"**`{st.session_state.filename}`**")
         st.caption(f"{size_kb:.1f} KB · {fmt.upper()}")
-        st.download_button(
-            "⬇️ 下载音频", data=st.session_state.audio_data,
-            file_name=st.session_state.filename,
-            mime=f"audio/{fmt}", use_container_width=True, type="primary",
-        )
+
+        # 桌面模式：用 tkinter 弹出"另存为"对话框
+        IS_DESKTOP = os.environ.get("MIMO_TTS_LAUNCHER") == "1"
+        if IS_DESKTOP:
+            if st.button("💾 另存为...", use_container_width=True, type="primary"):
+                try:
+                    import tkinter as tk
+                    from tkinter.filedialog import asksaveasfilename
+
+                    root = tk.Tk()
+                    root.withdraw()
+                    root.attributes('-topmost', True)
+
+                    save_path = asksaveasfilename(
+                        title="保存音频文件",
+                        defaultextension=f".{fmt}",
+                        filetypes=[
+                            (f"{fmt.upper()} 文件", f"*.{fmt}"),
+                            ("所有文件", "*.*"),
+                        ],
+                        initialfile=st.session_state.filename,
+                    )
+                    root.destroy()
+
+                    if save_path:
+                        with open(save_path, "wb") as f:
+                            f.write(st.session_state.audio_data)
+                        st.success(f"已保存: {save_path}")
+                    else:
+                        st.info("已取消保存")
+                except Exception as e:
+                    st.error(f"保存失败: {e}")
+        else:
+            # 浏览器模式：用原生下载按钮
+            # 修复 WAV 格式的 MIME 类型
+            download_mime = f"audio/{fmt}"
+            if fmt.lower() == "wav":
+                download_mime = "audio/wav"
+            st.download_button(
+                "⬇️ 下载音频", data=st.session_state.audio_data,
+                file_name=st.session_state.filename,
+                mime=download_mime, use_container_width=True, type="primary",
+            )
 
 # ============================================================
 # 底部
