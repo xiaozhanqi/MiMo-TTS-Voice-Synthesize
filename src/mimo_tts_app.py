@@ -208,6 +208,7 @@ with st.sidebar:
         mimoplan_token = st.text_input(
             "Plan Token", type="password", placeholder="mimo-plan-...",
             help="在 MiMo Plan 控制台获取的 Plan Token", key="mimoplan_token",
+            autocomplete="new-password",  # 禁用浏览器自动填充
         )
         mimoplan_endpoint = st.text_input(
             "接口地址",
@@ -230,6 +231,7 @@ with st.sidebar:
         api_key_input = st.text_input(
             "API Key", type="password", placeholder="sk-...",
             help="从 platform.xiaomimimo.com 获取", key="apikey_input",
+            autocomplete="new-password",  # 禁用浏览器自动填充
         )
         api_endpoint = st.text_input(
             "接口地址", value="https://api.xiaomimimo.com/v1", key="api_endpoint",
